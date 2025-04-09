@@ -56,3 +56,128 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+R# Clona o projeto (se necessário)
+git clone https://github.com/seu-usuario/rifa-solidaria.git
+cd rifa-solidaria
+
+# Instala as dependências
+composer install
+
+# Copia o arquivo de exemplo de ambiente
+cp .env.example .env
+
+# Gera a chave da aplicação
+php artisan key:generate
+
+# Cria o banco de dados (ajuste no .env se necessário)
+
+# Executa as migrations e popula os números da rifa
+php artisan migrate:fresh --seed
+
+Perfeito, Maisa! Aqui está um `README.md` completo para seu projeto **Rifa Solidária**, com instruções de instalação, uso, comandos e observações:
+
+---
+
+### 📄 `README.md`
+
+```markdown
+# 🎟️ Rifa Solidária
+
+Sistema simples para gerenciamento de uma rifa com 450 números, onde usuários podem reservar números, visualizar os seus e o sorteio só é habilitado após todos os números estarem preenchidos.
+
+---
+
+## 🚀 Requisitos
+
+- PHP >= 7.1.3
+- Composer
+- Laravel 5.5
+- MySQL
+- Node.js e NPM (opcional, caso use assets do Laravel Mix)
+
+---
+
+## ⚙️ Instalação
+
+```bash
+git clone https://github.com/seu-usuario/rifa-solidaria.git
+cd rifa-solidaria
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+
+Configure seu `.env` com as informações do banco de dados:
+
+```
+DB_DATABASE=rifa
+DB_USERNAME=root
+DB_PASSWORD=sua_senha
+```
+
+---
+
+## 🧱 Migrations + Seed
+
+Apague todas as tabelas existentes e crie novamente:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+> Isso criará as tabelas:
+> - `users`
+> - `password_resets`
+> - `rifa_numeros` (com os 450 números gerados automaticamente via seeder)
+
+---
+
+## 👤 Autenticação
+
+Laravel 5.5 vem com scaffold de autenticação pronto:
+
+```bash
+php artisan make:auth
+```
+
+---
+
+## 📄 Views
+
+As views principais são:
+
+- `resources/views/rifa/index.blade.php` → Exibe todos os 450 números, cores, modal de reserva, botão de sorteio.
+- `resources/views/rifa/meus_numeros.blade.php` → Lista os números reservados pelo usuário autenticado.
+
+---
+
+## 📦 Comandos úteis
+
+- `php artisan migrate` → Executa as migrations
+- `php artisan db:seed` → Executa os seeders
+- `php artisan make:auth` → Gera as views e rotas de login/cadastro
+- `php artisan serve` → Inicia servidor local
+
+---
+
+## ✅ Funcionalidades
+
+- Login e cadastro de usuários
+- Lista com todos os 450 números
+- Reserva de número com nome e telefone
+- Upload de comprovante (opcional)
+- Painel "Meus números"
+- Botão de sorteio habilitado apenas quando todos os números estiverem reservados
+
+---
+
+## 🛠️ Em desenvolvimento
+
+- Painel administrativo
+- Sistema de sorteio aleatório
+- Envio de confirmação por e-mail
+
+---
+

@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // app/User.php
+
+    public function numerosVendidos()
+    {
+        return $this->hasMany(RifaNumero::class, 'vendedor_id');
+    }
+
 }

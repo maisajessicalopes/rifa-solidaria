@@ -16,7 +16,7 @@
                     <input type="number" class="form-control" id="numero" name="numero" 
                            min="1" max="450" value="{{ request('numero') }}">
                 </div>
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <label for="nome" class="form-label">Nome do Comprador</label>
                     <input type="text" class="form-control" id="nome" name="nome" 
                            value="{{ request('nome') }}">
@@ -25,7 +25,7 @@
                     <label for="telefone" class="form-label">Telefone</label>
                     <input type="text" class="form-control" id="telefone" name="telefone" 
                            value="{{ request('telefone') }}">
-                </div>
+                </div> --}}
                 <div class="col-md-3">
                     <label for="vendedor" class="form-label">Vendedor</label>
                     <select class="form-select" id="vendedor" name="vendedor">
@@ -37,7 +37,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <label for="data_inicio" class="form-label">Data Início</label>
                     <input type="date" class="form-control" id="data_inicio" name="data_inicio" 
                            value="{{ request('data_inicio') }}">
@@ -46,7 +46,7 @@
                     <label for="data_fim" class="form-label">Data Fim</label>
                     <input type="date" class="form-control" id="data_fim" name="data_fim" 
                            value="{{ request('data_fim') }}">
-                </div>
+                </div> --}}
                 <div class="col-md-6 d-flex align-items-end">
                     <button type="submit" class="btn btn-primary me-2">
                         <i class="fas fa-filter"></i> Filtrar
@@ -93,7 +93,7 @@
                         <td colspan="6" class="text-center py-4">
                             <i class="fas fa-info-circle fa-2x mb-2 text-muted"></i>
                             <p class="h5 text-muted">Nenhum número encontrado</p>
-                            @if(request()->anyFilled(['numero', 'nome', 'telefone', 'vendedor', 'data_inicio', 'data_fim']))
+                            @if(request()->filled('numero') || request()->filled('nome') || request()->filled('telefone') || request()->filled('vendedor') || (request()->filled('data_inicio') && request()->filled('data_fim')))
                                 <a href="{{ route('rifa.numeros-vendidos') }}" class="btn btn-sm btn-outline-primary mt-2">
                                     Limpar filtros
                                 </a>

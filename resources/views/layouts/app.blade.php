@@ -56,7 +56,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Sair
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -75,6 +75,27 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <body style="
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-image: url('/img/fundo.jpeg');
+    background-size: contain;  /* Altere de 'cover' para 'contain' */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;  /* Centraliza a imagem */
+    position: relative;
+    background-color: #f0f0f0;  /* Cor de fallback para áreas não cobertas */
+">
+<div style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: -1;
+"></div>
+    <script src="{{ asset('js/app.js') }}"></script>    
 </body>
 </html>

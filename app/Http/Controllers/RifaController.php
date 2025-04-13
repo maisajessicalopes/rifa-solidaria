@@ -108,7 +108,7 @@ class RifaController extends Controller
             ]);
         }
         
-        $numerosVendidos = $query->paginate(50);
+        $numerosVendidos = $query->paginate(450);
         $vendedores = User::whereHas('numerosVendidos')->orderBy('name')->get();
         
         return view('rifa.numeros-vendidos', compact('numerosVendidos', 'vendedores'));

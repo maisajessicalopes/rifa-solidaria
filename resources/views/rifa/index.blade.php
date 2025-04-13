@@ -54,7 +54,7 @@
         }
     </style>
 
-    <h1 class="text-center mb-3 mb-md-4">Rifa Solidária R$10,00</h1>
+    <h2 class="text-center mb-3 mb-md-4">Rifa Solidária R$10,00 cada número</h2>
     
     <div class="alert alert-info mb-3 mb-md-4 py-2 py-md-3">
         Números disponíveis: <strong>{{ $numerosDisponiveis }} / 450</strong>
@@ -97,7 +97,7 @@
         </table>
     </div>
 
-    @if(Auth::user()->id == 2)
+    @if(Auth::user()->id == 1)
         <div class="d-flex justify-content-center my-3 my-md-4" style="margin-top: 20px;">
             <button id="btnSortear" class="btn btn-primary py-2 px-4" 
                     {{ $numerosDisponiveis > 0 ? 'disabled' : '' }}>
@@ -128,9 +128,8 @@
                     <div class="form-group mb-1">
                         <label for="numeroInput">Número</label>
                         <input type="number" class="form-control form-control-sm" id="numeroInput" 
-                               name="numero" min="1" max="450">
+                               name="numero" min="1" max="450" required>
                     </div>
-                    
                     <div class="form-group mb-3">
                         <label for="nome">Nome</label>
                         <input type="text" class="form-control form-control-sm" id="nome" name="nome" required>

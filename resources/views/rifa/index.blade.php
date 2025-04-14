@@ -73,7 +73,7 @@
     @endif
 
     <div class="rifa-container">
-        <table class="numeros-table">
+        <table class="numeros-table" style="margin-left:60px;">
             @for($i = 0; $i < 90; $i++)
                 <tr>
                     @for($j = 1; $j <= 5; $j++)
@@ -98,14 +98,14 @@
     </div>
 
     @if(Auth::user()->id == 1)
-        <div class="d-flex justify-content-center my-3 my-md-4" style="margin-top: 20px;">
+        <div class="d-flex justify-content-center my-3 my-md-4" style="margin-top: 20px; margin-left:100px;" >
             <button id="btnSortear" class="btn btn-primary py-2 px-4" 
                     {{ $numerosDisponiveis > 0 ? 'disabled' : '' }}>
                 Sortear 3 Ganhadores
             </button>
         </div>
     @endif
-    <div class="d-flex justify-content-center my-3 my-md-4" style="margin-top: 20px;">
+    <div class="d-flex justify-content-center my-3 my-md-4" style="margin-top: 20px; margin-left:110px;">
         <a href="{{ route('rifa.numeros-vendidos') }}" class="btn btn-success py-2 px-4">
             Números vendidos
         </a>

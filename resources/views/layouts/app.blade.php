@@ -81,7 +81,6 @@
     min-height: 100vh;
     background-image: url('/img/fundo.jpeg');
     background-size: contain;  /* Altere de 'cover' para 'contain' */
-    background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center center;  /* Centraliza a imagem */
     position: relative;

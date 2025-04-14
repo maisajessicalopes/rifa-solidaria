@@ -24,7 +24,7 @@
                         <td>{{ $numero->nome }}</td>
                         <td>{{ $numero->telefone }}</td>
                         <td>
-                            <a href="{{ asset('storage/' . $numero->comprovante) }}" target="_blank">Ver</a>
+                            <a href="{{ $numero->comprovante }}" target="_blank">Ver</a>
                         </td>
                         <td>{{ optional($numero->vendedor)->name }}</td>
                     </tr>

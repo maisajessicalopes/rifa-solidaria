@@ -192,7 +192,7 @@ class RifaController extends Controller
                 request('data_fim').' 23:59:59'
             ]);
         }
-        
+        //commit de composer
         $numerosVendidos = $query->paginate(450);
         $vendedores = User::whereHas('numerosVendidos')->orderBy('name')->get();
         

@@ -23,6 +23,9 @@ COPY . /var/www/html
 # Configurar o diretório de trabalho
 WORKDIR /var/www/html
 
+# Instalar as dependências do Composer
+RUN composer install --no-dev --optimize-autoloader
+
 # Criar o arquivo .env a partir do .env.example
 RUN cp .env.example .env
 

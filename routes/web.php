@@ -24,7 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/rifa', 'RifaController@index')->name('rifa.index');
     Route::post('/rifa/reservar', 'RifaController@reservarNumero')->name('rifa.reservar');
     Route::get('/rifa/meus-numeros', 'RifaController@meusNumeros')->name('rifa.meus_numeros');
-    Route::get('/rifa/sorteio', 'RifaController@sorteio')->name('rifa.sorteio');
+    Route::get('/rifa/sorteio', 'RifaController@sorteio')->name('rifa.sorteio');    
+    Route::get('/rifa/sorteio-view', function () {
+        return view('rifa.sorteio');
+    })->name('rifa.sorteio-view');
 });
   
 

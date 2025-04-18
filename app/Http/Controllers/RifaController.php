@@ -201,11 +201,11 @@ class RifaController extends Controller
 
     public function sorteio()
     {
-        if (RifaNumero::count() < 450) {
+        if (RifaNumero::count() < 303) {
             return response()->json(['error' => 'Nem todos os números foram vendidos!'], 400);
         }
 
-        $sorteados = RifaNumero::inRandomOrder()->limit(3)->get();
+        $sorteados = RifaNumero::with('vendedor')->inRandomOrder()->limit(1)->get();
         return response()->json(['sorteados' => $sorteados]);
     }
 }

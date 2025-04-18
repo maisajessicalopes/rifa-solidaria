@@ -55,7 +55,9 @@
     </style>
 
     <h2 class="text-center mb-3 mb-md-4">Rifa Solidária R$10,00 cada número</h2>
-    
+    <p>PIX: <a href="#" id="pixEmail">maisajlf90@outlook.com</a></p>
+<small id="copyMessage" style="display: none; color: green;">PIX copiado!</small>
+        
     <div class="alert alert-info mb-3 mb-md-4 py-2 py-md-3">
         Números disponíveis: <strong>{{ $numerosDisponiveis }} / 450</strong>
     </div>
@@ -98,11 +100,10 @@
     </div>
 
     @if(Auth::user()->id == 1)
-        <div class="d-flex justify-content-center my-3 my-md-4" style="margin-top: 20px; margin-left:100px;" >
-            <button id="btnSortear" class="btn btn-primary py-2 px-4" 
-                    {{ $numerosDisponiveis > 0 ? 'disabled' : '' }}>
-                Sortear 3 Ganhadores
-            </button>
+        <div class="d-flex justify-content-center my-3 my-md-4" style="margin-top: 20px; margin-left:150px;">
+            <a href="{{ route('rifa.sorteio-view') }}" class="btn btn-primary py-2 px-4">
+                Sortear
+            </a>
         </div>
     @endif
     <div class="d-flex justify-content-center my-3 my-md-4" style="margin-top: 20px; margin-left:110px;">
@@ -182,6 +183,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
 
     <script>
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(function() {
+                    showCopyMessage();
+                }).catch(function(error) {
+                    console.error('Erro ao copiar:', error);
+                    fallbackCopyText(text);
+                });
+            } else {
+                fallbackCopyText(text);
+            }
+            return false;
+        }
+        
+        function fallbackCopyText(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopyMessage();
+                }
+            } catch (err) {
+                console.error('Erro ao copiar:', err);
+            }
+            
+            document.body.removeChild(textarea);
+        }
+        
+        function showCopyMessage() {
+            const message = document.getElementById('copyMessage');
+            message.style.display = 'inline';
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 2000);
+        }
+
         $(document).ready(function() {
             // Configura máscara para telefone
             $('#telefone').inputmask('(99) 99999-9999');
@@ -192,32 +234,6 @@
                 $('#numeroInput').val(numero);
             });
 
-            // Sorteio
-            $('#btnSortear').click(function() {
-                $.ajax({
-                    url: '{{ route("rifa.sorteio") }}',
-                    type: 'GET',
-                    success: function(response) {
-                        let html = '<div class="ganhadores-list">';
-                        response.sorteados.forEach(function(ganhador) {
-                            const numeroFormatado = String(ganhador.numero).padStart(3, '0');
-                            html += `
-                                <div class="ganhador-item mb-2 p-2 border rounded">
-                                    <div class="font-weight-bold">Número ${numeroFormatado}</div>
-                                    <div>${ganhador.nome}</div>
-                                    <div>${ganhador.telefone}</div>
-                                </div>`;
-                        });
-                        html += '</div>';
-                        
-                        $('#resultadoSorteio').html(html);
-                        $('#modalSorteio').modal('show');
-                    },
-                    error: function(xhr) {
-                        alert(xhr.responseJSON.error);
-                    }
-                });
-            });
         });
     </script>
 @endsection

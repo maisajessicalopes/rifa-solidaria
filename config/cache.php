@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Str;
 
 return [
 
@@ -88,7 +89,23 @@ return [
 
     'prefix' => env(
         'CACHE_PREFIX',
-        str_slug(env('APP_NAME', 'laravel'), '_').'_cache'
+        Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'
     ),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cache Tags
+    |--------------------------------------------------------------------------
+    |
+    | This option allows you to enable or disable the cache tags feature. If
+    | your cache driver does not support tags, this option will have no effect.
+    |
+    */
+
+    'tags' => [
+        'enabled' => true,
+        'default' => 'default',
+        'prefix' => env('CACHE_TAG_PREFIX', 'laravel_tags'),
+    ],
 
 ];

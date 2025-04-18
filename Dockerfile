@@ -23,11 +23,8 @@ COPY . /var/www/html
 # Configurar o diretório de trabalho
 WORKDIR /var/www/html
 
-# Instalar dependências do Laravel
-RUN composer install --no-dev --optimize-autoloader
-
-# Configurar permissões
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Criar o arquivo .env a partir do .env.example
+RUN cp .env.example .env
 
 # Gerar a chave da aplicação
 RUN php artisan key:generate

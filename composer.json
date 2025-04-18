@@ -5,12 +5,14 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.1",
         "fideloper/proxy": "^4.4",
         "guzzlehttp/guzzle": "^7.0",
         "laravel/framework": "^8.83",
         "laravel/tinker": "^2.8",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "symfony/css-selector": "^6.0",
+        "tijsverkoyen/css-to-inline-styles": "^2.2"
     },
     "require-dev": {
         "filp/whoops": "^2.14",
